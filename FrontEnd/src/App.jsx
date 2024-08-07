@@ -1,3 +1,8 @@
+/*
+ * @Author: HHC
+ * @Date: 2024-08-07 14:15:47
+ * @LastEditTime: 2024-08-07 18:24:06
+ */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -28,6 +33,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
     </>
   )
 }

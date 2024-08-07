@@ -1,14 +1,26 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 14:15:47
- * @LastEditTime: 2024-08-07 18:24:06
+ * @LastEditTime: 2024-08-07 23:07:55
  */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+export default function App() {
+  return (
+
+    <>
+      <OriginalApp />
+    </>
+  )
+
+
+}
+
+
+function OriginalApp() {//特别注意逆天bug，只有首字母大写才能被作为组件使用！！！
   const [count, setCount] = useState(0)
 
   return (
@@ -37,5 +49,3 @@ function App() {
     </>
   )
 }
-
-export default App

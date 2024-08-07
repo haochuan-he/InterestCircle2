@@ -1,22 +1,41 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 14:15:47
- * @LastEditTime: 2024-08-07 23:07:55
+ * @LastEditTime: 2024-08-08 00:02:48
  */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Interests from './pages/Interests';
+import InterestDetail from './pages/InterestDetail.jsx';
+
 export default function App() {
   return (
-
     <>
       <OriginalApp />
+      <AppRouter />
+      {/* <Home /> */}
     </>
   )
 
 
+}
+
+function AppRouter() {
+  return (
+
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/interests" element={<Interests />} />
+        <Route path="/interest/:id" element={<InterestDetail />} />
+      </Routes>
+    </Router>
+  );
 }
 
 

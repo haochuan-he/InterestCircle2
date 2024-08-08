@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 14:15:47
- * @LastEditTime: 2024-08-08 11:06:22
+ * @LastEditTime: 2024-08-08 16:19:43
  */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
@@ -13,6 +13,8 @@ import Home from './pages/Home';
 import Interests from './pages/Interests';
 import InterestDetail from './pages/InterestDetail.jsx';
 import WelcomeAndLogin from './pages/WelcomeAndLogin.jsx';
+
+import './input.css'//必须添加这个使得TailwindCss work
 
 export default function App() {
   return (

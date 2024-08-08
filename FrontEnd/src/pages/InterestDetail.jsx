@@ -13,7 +13,7 @@ function InterestDetail() {
         const response = await axios.get(`/api/interest/${id}`);
         setInterest(response.data);
 
-        setInterest(null);//ONLY FOR TEST
+        // setInterest(null);//ONLY FOR TEST
       } catch (error) {
         console.error('Error fetching interest:', error);
       }

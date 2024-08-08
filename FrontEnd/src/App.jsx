@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 14:15:47
- * @LastEditTime: 2024-08-08 00:02:48
+ * @LastEditTime: 2024-08-08 11:06:22
  */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
@@ -12,11 +12,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Interests from './pages/Interests';
 import InterestDetail from './pages/InterestDetail.jsx';
+import WelcomeAndLogin from './pages/WelcomeAndLogin.jsx';
 
 export default function App() {
   return (
     <>
-      <OriginalApp />
+      {/* <OriginalApp /> */}
       <AppRouter />
       {/* <Home /> */}
     </>
@@ -30,7 +31,8 @@ function AppRouter() {
 
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<WelcomeAndLogin />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/interests" element={<Interests />} />
         <Route path="/interest/:id" element={<InterestDetail />} />
       </Routes>

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-09 15:43:05
+ * @LastEditTime: 2024-08-09 17:00:45
  */
 import React from 'react';
 
@@ -34,6 +34,37 @@ const blogs = [
         date: '2022-09-20',
         userImgURL: 'https://bucket.material-tailwind.com/magic-ai/2fadd7f00b6d08fc9dcacef52af357ec1213c0415ab97ace57ae0f17c7f6c2c8.jpg',
     }, {
+        circle: 'Expansion',
+        title: 'Expanding Our Service Network',
+        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
+        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
+        name: 'Jane Smith',
+        date: '2022-08-16',
+        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
+    }, {
+        circle: 'Expansion',
+        title: 'Expanding Our Service Network',
+        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
+        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
+        name: 'Jane Smith',
+        date: '2022-08-16',
+        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
+    }, {
+        circle: 'Expansion',
+        title: 'Expanding Our Service Network',
+        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
+        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
+        name: 'Jane Smith',
+        date: '2022-08-16',
+        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
+    }, {
+        circle: 'Expansion',
+        title: 'Expanding Our Service Network',
+        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
+        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
+        name: 'Jane Smith',
+        date: '2022-08-16',
+        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
     }, {
         circle: 'Expansion',
         title: 'Expanding Our Service Network',
@@ -63,6 +94,11 @@ function Content() {
                                     <div>
                                         <p class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5 !font-semibold">{blog.name}</p>
                                         <p class="block antialiased font-sans text-sm leading-normal text-gray-700 font-normal">{blog.date}</p>
+                                    </div>
+                                    <div className="mt-4">
+                                        {/* <Link to={`/blog/${blog.id}/comments`} className="text-blue-400 hover:text-blue-500">
+                                            查看评论
+                                        </Link> */}
                                     </div>
                                 </div>
                             </div>

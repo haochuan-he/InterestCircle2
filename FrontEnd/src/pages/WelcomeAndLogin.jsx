@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 //TODO:完成欢迎以及登录界面
 //TODO:完成前后端链接
+
+
 
 export default function WelcomeAndLogin() {
     return (
@@ -41,7 +44,7 @@ export default function WelcomeAndLogin() {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     登录账号
                                 </h3>
-                                <form>
+                                <form >
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="UserName"
@@ -77,7 +80,7 @@ export default function WelcomeAndLogin() {
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         {/* <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-lg text-blue-100 hover:bg-blue-700" onClick={() => { }}>登录</button> */}
                                         <button
-                                            type="Login"
+                                            type="submit"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                         >
                                             登录
@@ -93,27 +96,5 @@ export default function WelcomeAndLogin() {
                 </div>
             </div>
         </div >
-
-    );
-};
-
-function BackgroundImage() {
-    return (
-        <div
-            style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                zIndex: -1,
-                maxWidth: "100%",
-                maxHeight: "100%",
-                backgroundImage: "url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80)",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-            }}
-            className="bg-image,"
-        ></div>
     );
 };

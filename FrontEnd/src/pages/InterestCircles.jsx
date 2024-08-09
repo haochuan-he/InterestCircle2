@@ -1,3 +1,8 @@
+/*
+ * @Author: HHC
+ * @Date: 2024-08-07 23:28:18
+ * @LastEditTime: 2024-08-09 20:53:22
+ */
 import React from 'react';
 
 function originalInterests() {
@@ -39,7 +44,7 @@ const circles = [
     // More people...
 ]
 
-export default function Interests() {
+export default function InterestCircles() {
     return (
         <div className="bg-white py-24 sm:py-32">
             <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">

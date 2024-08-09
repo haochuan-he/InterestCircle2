@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 14:15:47
- * @LastEditTime: 2024-08-09 13:57:35
+ * @LastEditTime: 2024-08-09 20:53:32
  */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
@@ -10,7 +10,7 @@ import './App.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Interests from './pages/Interests';
+import InterestCircles from './pages/Interests';
 import InterestDetail from './pages/InterestDetail.jsx';
 import WelcomeAndLogin from './pages/WelcomeAndLogin.jsx';
 import Register from './pages/Register.jsx';
@@ -37,7 +37,7 @@ function AppRouter() {
         <Route path="/" element={<WelcomeAndLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/interests" element={<Interests />} />
+        <Route path="/interests" element={<InterestCircles />} />
         <Route path="/interest/:id" element={<InterestDetail />} />
       </Routes>
     </Router>

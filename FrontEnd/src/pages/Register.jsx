@@ -28,7 +28,7 @@ export default function Register() {
                     <div className="flex flex-col items-center justify-between xl:flex-row">
                         <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
                             <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-                                欢迎使用<br className="hidden md:block" /><br className="hidden md:block" />
+                                美好生活从这里开始<br className="hidden md:block" /><br className="hidden md:block" />
                                 <span className="text-teal-400">兴趣圈</span>
                             </h2>
                             <p className="max-w-xl mb-4 text-base text-gray-400 md:text-lg">

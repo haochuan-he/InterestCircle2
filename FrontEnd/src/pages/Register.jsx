@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-//TODO:完成欢迎以及登录界面
 //TODO:完成前后端链接
 
-export default function WelcomeAndLogin() {
+export default function Register() {
     return (
         <div style={{
             position: "absolute",
@@ -39,7 +38,7 @@ export default function WelcomeAndLogin() {
                         <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
                             <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                                    登录账号
+                                    注册新账号
                                 </h3>
                                 <form>
                                     <div className="mb-1 sm:mb-2">
@@ -74,17 +73,34 @@ export default function WelcomeAndLogin() {
                                             name="Password"
                                         />
                                     </div>
+                                    <div className="mb-1 sm:mb-2">
+                                        <label
+                                            htmlFor="PasswordConfirm"
+                                            className="inline-block mb-1 font-medium"
+                                        >
+                                            确认密码
+                                        </label>
+                                        <input
+                                            placeholder="PasswordConfirm"
+                                            required
+                                            type="text"
+                                            className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                                            id="PasswordConfirm"
+                                            name="PasswordConfirm"
+                                        />
+                                    </div>
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         {/* <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-lg text-blue-100 hover:bg-blue-700" onClick={() => { }}>登录</button> */}
                                         <button
-                                            type="Login"
+                                            type="Register"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                         >
-                                            登录
+                                            注册
                                         </button>
-                                        {/* <a className="text-blue-400 hover:text-blue-500" href="/register">没有账号？立即注册</a> */}
-                                        <Link to="/register" className="text-blue-400 hover:text-blue-500">没有账号？立即注册</Link>
+                                        {/* <a className="text-blue-400 hover:text-blue-500" href="/">返回登录界面</a> */}
+                                        <Link to="/" className="text-blue-400 hover:text-blue-500">返回登录界面</Link>
                                         {/*Link可以不进行页面刷新，更加流畅自然*/}
+
                                     </div>
                                 </form>
                             </div>

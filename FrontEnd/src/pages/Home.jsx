@@ -1,8 +1,9 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-09 17:00:45
+ * @LastEditTime: 2024-08-09 21:35:31
  */
+import { useState } from "react";
 import React from 'react';
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
 
     return (
         <div>
+            <Head />
             <Content />
         </div>
     );
@@ -90,7 +92,7 @@ function Content() {
                                 {/* <a href="#" class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900 mb-2 normal-case transition-colors hover:text-gray-700">{blog.title}</a */}
                                 <p class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-indigo-400 mb-2 normal-case transition-color">{blog.title}</p>
                                 <p class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-500">{blog.detail}</p>
-                                <div class="flex items-center gap-4"><img src={blog.userImgURL} class="inline-block relative object-cover object-center !rounded-full w-12 h-12 rounded-lg" />
+                                <div class="flex items-center gap-4"><img src={blog.userImgURL} class="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
                                     <div>
                                         <p class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5 !font-semibold">{blog.name}</p>
                                         <p class="block antialiased font-sans text-sm leading-normal text-gray-700 font-normal">{blog.date}</p>
@@ -109,3 +111,54 @@ function Content() {
         </>
     )
 }
+
+
+function Head() {
+    return (
+        <div class="bg-blue-300 rounded-2xl">
+            <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+                <div class="relative flex  items-center grid-cols-2 lg:grid-cols-3">
+                    <ul class="flex items-center  space-x-8 lg:flex">
+                        <div class="flex items-center  space-x-2 lg:flex">
+                            <img src="https://bucket.material-tailwind.com/magic-ai/6b1c5941d417a2a32baee89c2f3d1975d7d4fb81e486ed43dc1082ac54b0658b.jpg" class="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
+                            <li>
+                                <a
+                                    href="/"
+                                    class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
+                                >
+                                    个人主页
+                                </a>
+                            </li>
+                        </div>
+                        <li>
+                            <a
+                                href="/"
+                                class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
+                            >
+                                所有兴趣圈
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="flex items-center  ml-auto space-x-8 lg:flex">
+                        <li>
+                            <a
+                                href="/"
+                                class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-red-500"
+                            >
+                                退出登录
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="/"
+                                class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                            >
+                                发帖
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div >
+        </div >
+    );
+};

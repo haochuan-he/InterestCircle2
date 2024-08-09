@@ -1,13 +1,32 @@
 import React from 'react';
-
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 //TODO:完成欢迎以及登录界面
 //TODO:完成前后端链接
 
+const usernameRef = React.createRef();
+const passwordRef = React.createRef();
+
 
 
 export default function WelcomeAndLogin() {
+
+    const navigate = useNavigate();
+    function handleLogin() {
+        // 获取表单数据
+        const username = usernameRef.current.value;
+        const password = passwordRef.current.value;
+
+        console.log(username);
+        console.log(password);
+
+
+        // TODO: 后端处理
+
+        // 跳转到首页
+        navigate("/home");
+    }
+
     return (
         <div style={{
             position: "absolute",
@@ -53,6 +72,7 @@ export default function WelcomeAndLogin() {
                                             用户名
                                         </label>
                                         <input
+                                            ref={usernameRef}
                                             placeholder="UserName"
                                             required
                                             type="text"
@@ -69,6 +89,7 @@ export default function WelcomeAndLogin() {
                                             密码
                                         </label>
                                         <input
+                                            ref={passwordRef}
                                             placeholder="Password"
                                             required
                                             type="text"
@@ -82,6 +103,7 @@ export default function WelcomeAndLogin() {
                                         <button
                                             type="submit"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                            onClick={handleLogin}
                                         >
                                             登录
                                         </button>

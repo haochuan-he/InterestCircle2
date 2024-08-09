@@ -1,10 +1,11 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-09 21:35:31
+ * @LastEditTime: 2024-08-09 21:40:18
  */
-import { useState } from "react";
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
 
@@ -97,12 +98,11 @@ function Content() {
                                         <p class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5 !font-semibold">{blog.name}</p>
                                         <p class="block antialiased font-sans text-sm leading-normal text-gray-700 font-normal">{blog.date}</p>
                                     </div>
-                                    <div className="mt-4">
-                                        {/* <Link to={`/blog/${blog.id}/comments`} className="text-blue-400 hover:text-blue-500">
-                                            查看评论
-                                        </Link> */}
-                                    </div>
+
                                 </div>
+                                <Link to={`/blog/${blog.id}/comments`} className="text-indigo-400 hover:text-indigo-600 ">
+                                    <br className="hidden md:block" />查看评论{">"}
+                                </Link>
                             </div>
                         </div>
                     ))}

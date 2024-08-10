@@ -1,3 +1,8 @@
+/*
+ * @Author: HHC
+ * @Date: 2024-08-10 13:52:15
+ * @LastEditTime: 2024-08-10 13:57:20
+ */
 import { MidwayConfig } from '@midwayjs/core';
 
 export default {
@@ -5,5 +10,8 @@ export default {
   keys: '1723269135702_8654',
   koa: {
     port: 7001,
+  },
+  cors: {
+    origin: '*',
   },
 } as MidwayConfig;

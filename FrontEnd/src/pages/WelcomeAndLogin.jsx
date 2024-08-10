@@ -23,26 +23,15 @@ export default function WelcomeAndLogin() {
 
 
         // TODO: 后端处理
-
         const result = await checkLogin({ UserName: username, Password: password });
         console.log("前端得到结果", result);
         console.log(result.data);
-        const isSuccessful = result.data.success;
-        console.log(isSuccessful)
 
         // 跳转到首页
-        if (isSuccessful) {
-
-            console.log("准备重定向")
-
-
-            setTimeout(() => {
-                navigate('/home');
-                console.log("已经重定向");
-            }, 10)
-
+        if (result.data.success) {
+            navigate('/home');
         } else {
-            alert("登陆失败，请检查用户名和密码是否正确！")
+            alert("登陆失败，请检查用户名和密码是否正确！");
         }
 
     }

@@ -1,9 +1,45 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { register } from '../request/util.request';
 //TODO:完成前后端链接
 
+const usernameRef = React.createRef();
+const passwordRef = React.createRef();
+const passwordConfirmRef = React.createRef();
+
+
+
+
 export default function Register() {
+    const navigate = useNavigate();
+    async function handleLogin() {
+        // 获取表单数据
+        const username = usernameRef.current.value;
+        const password = passwordRef.current.value;
+        const passwordConfirm = passwordConfirmRef.current.value;
+
+        // console.log("前端输入注册", username);
+        // console.log("前端输入注册", password);
+        // console.log("前端输入注册", passwordConfirm);
+
+        if (password != passwordConfirm) {
+            alert("注册失败，两次密码不一致！");
+        } else {
+            // TODO: 后端处理
+            const result = await register({ UserName: username, Password: password });
+            // console.log("前端得到结果result", result);
+            // console.log(result.data);
+
+            if (result.data.id != -1) {
+                alert("注册成功！");
+                navigate('/');
+            }
+            else {
+                alert("注册失败，用户名已被使用，请更换用户名！");
+            }
+        }
+
+    }
     return (
         <div style={{
             position: "absolute",
@@ -40,7 +76,7 @@ export default function Register() {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     注册新账号
                                 </h3>
-                                <form>
+                                <form onSubmit={(e) => e.preventDefault()}>
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="UserName"
@@ -49,6 +85,7 @@ export default function Register() {
                                             用户名
                                         </label>
                                         <input
+                                            ref={usernameRef}
                                             placeholder="UserName"
                                             required
                                             type="text"
@@ -65,6 +102,7 @@ export default function Register() {
                                             密码
                                         </label>
                                         <input
+                                            ref={passwordRef}
                                             placeholder="Password"
                                             required
                                             type="text"
@@ -81,6 +119,7 @@ export default function Register() {
                                             确认密码
                                         </label>
                                         <input
+                                            ref={passwordConfirmRef}
                                             placeholder="PasswordConfirm"
                                             required
                                             type="text"
@@ -94,6 +133,7 @@ export default function Register() {
                                         <button
                                             type="Register"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                            onClick={handleLogin}
                                         >
                                             注册
                                         </button>

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-11 00:04:04
+ * @LastEditTime: 2024-08-11 00:27:20
  */
 
 import React from 'react';
@@ -109,7 +109,7 @@ function Content() {
                                     <p className="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-500">{blog.detail}</p>
                                     <div className="flex items-center gap-4"><img src={blog.userImgURL} className="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
                                         <div>
-                                            <p className="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5 !font-semibold">{blog.name}</p>
+                                            <p className="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5">{blog.name}</p>
                                             <p className="block antialiased font-sans text-sm leading-normal text-gray-700 font-normal">{blog.date}</p>
                                         </div>
                                     </div>

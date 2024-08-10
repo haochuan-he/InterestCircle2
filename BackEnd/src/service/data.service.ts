@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-10 23:14:19
+ * @LastEditTime: 2024-08-11 01:11:30
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../model/data.model'
@@ -9,14 +9,22 @@ import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../mo
 @Provide()
 export class DataService {
     async createUser(user: User): Promise<User> {
-        if (this.getUserByName == undefined)//避免用户名重复
+        // console.log("后端DataService", user)
+        // console.log("后端DataService", this.getUserByName(user.username) )
+        // console.log("现在所有用户", this.getUsers())
+
+        if (await this.getUserByName(user.username) == undefined)//避免用户名重复
         {
+            // console.log("创建新用户");
             const newUser = { ...user, id: Date.now() };//id采用时间戳保证唯一性；解构赋值（...user）来复制传入的 user 对象的所有属性
             users.push(newUser);
+            // console.log("新用户is", newUser);
+
             return newUser;
         } else {
             return undefined;
         }
+
     }
 
     async getUsers(): Promise<User[]> {

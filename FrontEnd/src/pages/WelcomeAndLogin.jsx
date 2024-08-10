@@ -9,7 +9,6 @@ const usernameRef = React.createRef();
 const passwordRef = React.createRef();
 
 
-
 export default function WelcomeAndLogin() {
 
     const navigate = useNavigate();
@@ -18,14 +17,14 @@ export default function WelcomeAndLogin() {
         const username = usernameRef.current.value;
         const password = passwordRef.current.value;
 
-        console.log("前端输入", username);
-        console.log("前端输入", password);
+        // console.log("前端输入", username);
+        // console.log("前端输入", password);
 
 
         // TODO: 后端处理
         const result = await checkLogin({ UserName: username, Password: password });
-        console.log("前端得到结果", result);
-        console.log(result.data);
+        // console.log("前端得到结果", result);
+        // console.log(result.data);
 
         // 跳转到首页
         if (result.data.success) {

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-10 13:57:20
+ * @LastEditTime: 2024-08-10 15:23:36
  */
 import { MidwayConfig } from '@midwayjs/core';
 
@@ -12,6 +12,6 @@ export default {
     port: 7001,
   },
   cors: {
-    origin: '*',
-  },
+    origin: "*"
+  }
 } as MidwayConfig;

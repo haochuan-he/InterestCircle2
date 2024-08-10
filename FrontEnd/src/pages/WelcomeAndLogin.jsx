@@ -26,13 +26,25 @@ export default function WelcomeAndLogin() {
 
         const result = await checkLogin({ UserName: username, Password: password });
         console.log("前端得到结果", result);
+        console.log(result.data);
+        const isSuccessful = result.data.success;
+        console.log(isSuccessful)
 
         // 跳转到首页
-        if (result.data.success == true) {
-            navigate("/home");
+        if (isSuccessful) {
+
+            console.log("准备重定向")
+
+
+            setTimeout(() => {
+                navigate('/home');
+                console.log("已经重定向");
+            }, 10)
+
         } else {
-            alert("登录失败，请检查用户名和密码!");
+            alert("登陆失败，请检查用户名和密码是否正确！")
         }
+
     }
 
     return (
@@ -71,7 +83,8 @@ export default function WelcomeAndLogin() {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     登录账号
                                 </h3>
-                                <form >
+                                <form onSubmit={(e) => e.preventDefault()}>
+                                    {/*修复逆天bug：表单存在自动提交机制，会在点击按钮的时候自动重定向到登录界面，出现home页面闪现的问题*/}
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="UserName"
@@ -109,7 +122,7 @@ export default function WelcomeAndLogin() {
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         {/* <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-lg text-blue-100 hover:bg-blue-700" onClick={() => { }}>登录</button> */}
                                         <button
-                                            type="submit"
+                                            type="notsubmit"
                                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                             onClick={handleLogin}
                                         >

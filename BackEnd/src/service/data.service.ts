@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-10 20:30:02
+ * @LastEditTime: 2024-08-10 23:14:19
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../model/data.model'

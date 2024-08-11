@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-12 00:26:15
+ * @LastEditTime: 2024-08-12 00:29:22
  */
 import React from "react";
 import { useState, useEffect } from 'react';
@@ -144,10 +144,10 @@ function Main({ user, circles, chosenCircle, setChosenCircle }) {
                                     className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                 // onClick={handleLogin}
                                 >
-                                    提交
+                                    发布
                                 </button>
                                 {/* <a className="text-blue-400 hover:text-blue-500" href="/">返回登录界面</a> */}
-                                <Link to={`/home?uid=${user.id}`} className="text-blue-400 hover:text-blue-500">返回主页</Link>
+                                <Link to={`/home?uid=${user.id}`} className="justify-center text-blue-400 hover:text-blue-500">{"< "}返回主页</Link>
                                 {/*Link可以不进行页面刷新，更加流畅自然*/}
                             </div>
                         </form>
@@ -155,7 +155,7 @@ function Main({ user, circles, chosenCircle, setChosenCircle }) {
 
                     </div>
                     <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                        <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" />
+                        <img src="https://dummyimage.com/720x600" />
                     </div>
                 </div>
             </section>

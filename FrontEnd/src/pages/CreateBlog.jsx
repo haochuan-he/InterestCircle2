@@ -1,12 +1,14 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-12 00:29:22
+ * @LastEditTime: 2024-08-12 00:57:53
  */
 import React from "react";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { homeGetUser } from "../request/util.request";
+
+import ImageDropzone from "../util/ImageDropZone";
 
 
 const titleRef = React.createRef();
@@ -18,6 +20,22 @@ export default function CreateBlog() {
     const [user, setUser] = useState(null);
     const [circles, setCircles] = useState(null);
     const [chosenCircle, setChosenCircle] = useState(null);
+
+    const [imageUrl, setImageUrl] = useState('');
+
+    const handleImageUploaded = (url) => {
+        alert("我有反应")
+
+        setImageUrl(url);
+    };
+
+    return (
+        <div>
+            <ImageDropzone onImageUploaded={handleImageUploaded} />
+            {imageUrl && <img src={imageUrl} alt="Uploaded Image" />}
+        </div>
+    );
+
 
 
     useEffect(() => {

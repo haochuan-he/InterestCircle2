@@ -1,12 +1,15 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-11 16:01:07
+ * @LastEditTime: 2024-08-12 02:07:02
  */
-import { Inject, Controller, Get, Query, Post, Body } from '@midwayjs/core';
+import { Inject, Controller, Get, Query, Post, Body, File } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { UserService } from '../service/user.service';
 import { DataService } from '../service/data.service';
+
+import * as fs from 'fs';
+import * as path from 'path';
 @Controller('/api')
 export class APIController {
   @Inject()
@@ -65,5 +68,17 @@ export class APIController {
     } else {
       return dataUser;
     }
+  }
+
+  @Post('/uploadImage')
+  async uploadImage(@File('file') file: any) {
+    console.log("后端/uploadImage被调用")
+    const imagePath = path.join(__dirname, '..', '..', 'FrontEnd', 'public', 'images', file.filename);
+
+    // const imagePath = path.join(__dirname, '..', '..', 'dist', 'public', 'images', file.filename);//打包之后可能使用
+
+    fs.writeFileSync(imagePath, file.buffer);
+
+    return { imageUrl: `/images/${file.filename}` };
   }
 }

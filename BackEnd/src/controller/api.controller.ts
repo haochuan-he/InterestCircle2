@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-11 01:19:31
+ * @LastEditTime: 2024-08-11 16:01:07
  */
 import { Inject, Controller, Get, Query, Post, Body } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -33,12 +33,20 @@ export class APIController {
     const dataUser = await this.dataService.getUserByName(username);
 
     if (dataUser != undefined && password === dataUser.password) {
-      // console.log("后端登录成功")
-      return { success: true, message: 'OK', data: '' };
+      console.log("后端登录成功")
+      return { success: true, message: 'OK', data: '', uid: dataUser.id };
     } else {
       // console.log("后端登录失败")
       return { success: false, message: 'OK', data: '' };
     }
+  }
+
+  @Get('/getUser')
+  async getUser(@Query() query: any) {
+    console.log("后端getUser id", query);
+    const user = await this.dataService.getUserById(Number(query.uid));
+    console.log("后端要返回", user)
+    return user;
   }
 
 

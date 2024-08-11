@@ -1,17 +1,46 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-11 00:27:20
+ * @LastEditTime: 2024-08-11 16:17:58
  */
 
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { homeGetUser } from '../request/util.request';
 
 export default function Home() {
 
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        // 获取当前URL
+        const url = new URL(window.location.href);
+
+        // 获取查询参数
+        const uid = url.searchParams.get('uid');
+
+        // 异步加载用户数据
+        homeGetUser(uid).then(response => {
+            setUser(response);
+        }).catch(error => {
+            console.error("Error fetching user:", error);
+        });
+    }, []);
 
     return (
         <div>
+            <div>
+                {user ? (
+                    <div>
+                        <h1>现在的ID为{user.id}</h1>
+                        <h1>现在的名字为{user.username}</h1>
+                        <Head user={user} />
+                        <Content />
+                    </div>
+                ) : (
+                    <div>Loading...</div>
+                )}
+            </div>
             <Head />
             <Content />
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { checkLogin } from '../request/util.request';
+// import { MyStorage } from '../MyStorage'
 
 //TODO:完成欢迎以及登录界面
 //TODO:完成前后端链接
@@ -12,23 +13,22 @@ const passwordRef = React.createRef();
 export default function WelcomeAndLogin() {
 
     const navigate = useNavigate();
+
     async function handleLogin() {
         // 获取表单数据
         const username = usernameRef.current.value;
         const password = passwordRef.current.value;
 
-        // console.log("前端输入", username);
-        // console.log("前端输入", password);
-
-
         // TODO: 后端处理
         const result = await checkLogin({ UserName: username, Password: password });
-        // console.log("前端得到结果", result);
-        // console.log(result.data);
+        console.log("前端得到结果", result);
+        console.log("前端得到结果", result.data);
 
         // 跳转到首页
         if (result.data.success) {
-            navigate('/home');
+
+            console.log("现在的用户ID为", result.data.uid);
+            navigate('/home?uid=' + result.data.uid);
         } else {
             alert("登陆失败，请检查用户名和密码是否正确！");
         }

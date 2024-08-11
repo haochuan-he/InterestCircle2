@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-11 16:17:58
+ * @LastEditTime: 2024-08-11 20:48:27
  */
 
 import React from 'react';
@@ -29,20 +29,16 @@ export default function Home() {
 
     return (
         <div>
-            <div>
-                {user ? (
-                    <div>
-                        <h1>现在的ID为{user.id}</h1>
-                        <h1>现在的名字为{user.username}</h1>
-                        <Head user={user} />
-                        <Content />
-                    </div>
-                ) : (
-                    <div>Loading...</div>
-                )}
-            </div>
-            <Head />
-            <Content />
+            {user ? (
+                <div>
+                    {/* <h1>现在的ID为{user.id}</h1>
+                        <h1>现在的名字为{user.username}</h1> */}
+                    <Head user={user} />
+                    <Content user={user} />
+                </div>
+            ) : (
+                <div>Loading...</div>
+            )}
         </div>
     );
     //TODO:完成主页页面设计
@@ -156,7 +152,7 @@ function Content() {
 }
 
 
-function Head() {
+function Head({ user }) {
     return (
         <div className="bg-blue-300 rounded-2xl">
             <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -182,6 +178,10 @@ function Head() {
                             </a>
                         </li>
                     </ul>
+                    <span
+                        class="inline-flex items-center lg:mx-auto ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
+                        欢迎您，{user.username}
+                    </span>
                     <ul className="flex items-center  ml-auto space-x-8 lg:flex">
                         <li>
                             <a
@@ -193,7 +193,7 @@ function Head() {
                         </li>
                         <li>
                             <a
-                                href="/"
+                                href={`/createBlog?uid=${user.id}`}//特别注意使用飘号才能进行变量替换
                                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                             >
                                 发帖

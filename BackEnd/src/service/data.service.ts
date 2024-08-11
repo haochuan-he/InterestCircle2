@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-11 01:11:30
+ * @LastEditTime: 2024-08-11 21:05:51
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../model/data.model'
@@ -57,6 +57,28 @@ export class DataService {
     //TODO 相似的实现方法用于帖子和兴趣圈
     async getBlogs(): Promise<Blog[]> {
         return blogs;
+    }
+    async getBlogByName(name: string): Promise<Blog | undefined> {
+        return blogs.find(blog => blog.name === name);
+    }
+
+    async createBlog(blog: Blog): Promise<Blog> {
+        // console.log("后端DataService", user)
+        // console.log("后端DataService", this.getUserByName(user.username) )
+        // console.log("现在所有用户", this.getUsers())
+
+        if (await this.getBlogByName(blog.name) == undefined)//避免用户名重复
+        {
+            // console.log("创建新用户");
+            const newBlog = { ...blog, id: Date.now() };
+            blogs.push(newBlog);
+            // console.log("新用户is", newUser);
+
+            return newBlog;
+        } else {
+            return undefined;
+        }
+
     }
     //
     async getInterestCircles(): Promise<InterestCircle[]> {

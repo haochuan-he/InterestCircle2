@@ -1,11 +1,12 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getBlogByID } from '../request/util.request';
 import { homeGetUser } from '../request/util.request';
 
 
 export default function Comment() {
+    const navigate = useNavigate();
 
     const [user, setUser] = useState(null);
     const [blog, setBlog] = useState([]);
@@ -38,18 +39,28 @@ export default function Comment() {
 
     }, []);
 
+    function handleGoBack() {
+        navigate('/home?uid=' + user.id);
+    }
+
+    function handleCreateComment() {
+
+    }
+
+
     return (
         <>
             <section className="grid min-h-screen p-8 place-items-center">
                 <div className="container grid grid-cols-1 gap-8 my-auto lg:grid-col">{/**评论更适合竖向排版 */}
                     <ShowBlog blog={blog} />
-                    <AllComments blog={blog} comments={comments} />
+                    <AllComments blog={blog} comments={comments} user={user} handleGoBack={handleGoBack} handleCreateComment={handleCreateComment} />
                 </div>
             </section>
         </>
     )
 
 }
+
 function ShowBlog({ blog }) {
     return (
         <div className="relative flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none grid gap-2 item sm:grid-cols-2">
@@ -69,7 +80,7 @@ function ShowBlog({ blog }) {
         </div>
     );
 }
-function AllComments({ blog, comments }) {
+function AllComments({ blog, comments, handleGoBack, handleCreateComment }) {
     return (
         <>
             <section className="py-3 bg-blueGray-50">
@@ -83,9 +94,15 @@ function AllComments({ blog, comments }) {
                                 </div>
                                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                                     <button className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
-                                    >
+                                        onClick={handleCreateComment}>
                                         发布评论
                                     </button>
+                                    <button className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
+                                        onClick={handleGoBack}
+                                    >
+                                        回到主页
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
@@ -111,10 +128,12 @@ function AllComments({ blog, comments }) {
                                             </tr>)
                                         })
                                     }
-                                    这里有评论,{blog.id}
-
                                 </tbody>
                             </table>
+                            <span
+                                class="inline-flex items-center lg:mx-auto ml-2 text-xl font-bold tracking-wide text-indigo-500 uppercase">
+                                更多精彩评论等你发布！
+                            </span>
                         </div>
                     </div>
                 </div>

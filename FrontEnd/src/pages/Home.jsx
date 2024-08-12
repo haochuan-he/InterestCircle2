@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-12 21:12:42
+ * @LastEditTime: 2024-08-12 22:15:53
  */
 
 import React from 'react';
@@ -31,7 +31,7 @@ export default function Home() {
         getAllBlogs().then(ret => {
             setBlogs(ret)
         })
-        // console.log("前端加载后blogs", blogs)
+        console.log("前端加载后blogs", blogs)
     }, []);
 
     return (
@@ -41,7 +41,7 @@ export default function Home() {
                     {/* <h1>现在的ID为{user.id}</h1>
                         <h1>现在的名字为{user.username}</h1> */}
                     <Head user={user} />
-                    <Content blogs={blogs} />
+                    <Content blogs={blogs} user={user} />
                 </div>
             ) : (
                 <div>Loading...</div>
@@ -51,7 +51,7 @@ export default function Home() {
     //TODO:完成主页页面设计
 }
 
-function Content({ blogs }) {
+function Content({ blogs, user }) {
 
     return (
         <>
@@ -73,7 +73,7 @@ function Content({ blogs }) {
                                             <p className="block antialiased font-sans text-sm leading-normal text-gray-700 font-normal">{blog.date}</p>
                                         </div>
                                     </div>
-                                    <Link to={`/blog/${blog.id}/comments`} className="text-indigo-400 hover:text-indigo-600 ">
+                                    <Link to={`/comment?uid=${user.id}&bid=${blog.id}`} className="text-indigo-400 hover:text-indigo-600 ">
                                         <br className="hidden md:block" />查看评论{">"}
                                     </Link>
                                 </div>

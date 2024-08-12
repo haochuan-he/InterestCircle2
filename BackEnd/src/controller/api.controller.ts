@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-12 18:02:23
+ * @LastEditTime: 2024-08-12 22:20:45
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -57,6 +57,14 @@ export class APIController {
     const result = await this.dataService.getBlogs();
     console.log("后端getAllUser要返回", result)
     return result;
+  }
+
+  @Get('/getBlogByID')
+  async getBlogByID(@Query() query: any) {
+    console.log("--------后端getBlogByID id", query);
+    const blog = await this.dataService.getBlogById(Number(query.id));
+    console.log("--------后端要返回blog", blog)
+    return blog;
   }
 
   @Post('/register')
@@ -117,6 +125,7 @@ export class APIController {
       name: user.username,
       date: this.dataService.getDateTime().date,
       userImgURL: user.userImgURL,
+      allComments: [],
     })
 
     return { success: true };

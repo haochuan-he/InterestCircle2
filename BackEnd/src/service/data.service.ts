@@ -67,6 +67,10 @@ export class DataService {
     async getBlogs(): Promise<Blog[]> {
         return blogs;
     }
+    async getBlogById(id: number): Promise<Blog | undefined> {
+        return blogs.find(blog => blog.id === id);
+    }
+
     async getBlogByName(name: string): Promise<Blog | undefined> {
         return blogs.find(blog => blog.name === name);
     }

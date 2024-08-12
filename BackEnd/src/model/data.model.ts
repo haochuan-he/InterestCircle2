@@ -1,13 +1,19 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:16:41
- * @LastEditTime: 2024-08-12 14:58:19
+ * @LastEditTime: 2024-08-12 21:38:23
  */
 export interface User {
     id: number;
     username: string;
     password: string;
     userImgURL: string;
+}
+
+export interface Comment {
+    id: number;
+    uid: number;
+    content: string;
 }
 
 export interface Blog {
@@ -19,6 +25,7 @@ export interface Blog {
     name: string,
     date: string,
     userImgURL: string,
+    allComments: Comment[],
 }
 
 export interface InterestCircle {
@@ -35,6 +42,7 @@ export const users: User[] = [{
     password: "1212",
     userImgURL: "/images/defaultUser.jpg",
 }];
+
 export const blogs: Blog[] = [
     {
         id: 1,
@@ -45,6 +53,7 @@ export const blogs: Blog[] = [
         name: '铁蛋',
         date: '2024-08-12',
         userImgURL: '/images/user1.jpg',
+        allComments: [],
     }, {
         id: 2,
         circle: '越野',
@@ -54,6 +63,8 @@ export const blogs: Blog[] = [
         name: '人狠话不多',
         date: '2024-08-12',
         userImgURL: '/images/user2.jpg',
+        allComments: [],
+
     }, {
         id: 3,
         circle: '越野',
@@ -63,6 +74,8 @@ export const blogs: Blog[] = [
         name: '花开富贵',
         date: '2024-08-08',
         userImgURL: '/images/user3.jpg',
+        allComments: [],
+
     },
 ];
 export const interestCircles: InterestCircle[] = [];

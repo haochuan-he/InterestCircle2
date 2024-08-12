@@ -10,8 +10,7 @@ import './App.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import InterestCircles from './pages/InterestCircles';
-import InterestDetail from './pages/InterestDetail.jsx';
+import Circles from './pages/Circles';
 import WelcomeAndLogin from './pages/WelcomeAndLogin.jsx';
 import Register from './pages/Register.jsx';
 import CreateBlog from './pages/CreateBlog.jsx';
@@ -41,8 +40,7 @@ function AppRouter() {
         <Route path="/home" element={<Home />} />
         <Route path="/createBlog" element={<CreateBlog />} />
         <Route path="/comment" element={< Comment />} />
-        <Route path="/interestCircles" element={<InterestCircles />} />
-        <Route path="/interest/:id" element={<InterestDetail />} />
+        <Route path="/circles" element={<Circles />} />
       </Routes>
     </Router>
   );

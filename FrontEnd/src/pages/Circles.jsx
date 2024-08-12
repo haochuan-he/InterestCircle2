@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:28:18
- * @LastEditTime: 2024-08-13 02:45:58
+ * @LastEditTime: 2024-08-13 02:48:12
  */
 import React from 'react';
 
@@ -14,7 +14,7 @@ export default function Circles() {
 
             <section className="relative py-16 bg-blueGray-50">
                 <div className="w-full mb-12 px-4">{/**改动px- */}
-                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-pink-900 text-white">
+                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-indigo-700 text-white">
 
                         <div className="rounded-t mb-0 px-4 py-3 border-0">
                             <div className="flex flex-wrap items-center">
@@ -29,7 +29,7 @@ export default function Circles() {
                                 <thead>
                                     <tr>
                                         <th className="px-96 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 
-                                        whitespace-nowrap font-semibold text-left bg-pink-800 text-pink-300 border-pink-700">兴趣圈</th>{/**改动px- */}
+                                        whitespace-nowrap font-bold text-left bg-indigo-500 text-purple-300 border-indigo-500">兴趣圈</th>{/**改动px- */}
                                     </tr>
                                 </thead>
 
@@ -37,7 +37,6 @@ export default function Circles() {
 
                                     <tr>
                                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                                            <img src="https://demos.creative-tim.com/notus-js/assets/img/bootstrap.jpg" className="h-12 w-12 bg-white rounded-full border" alt="..." />
                                             <span className="ml-3 font-bold text-white"> Argon Design System </span></th>
                                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         </td>

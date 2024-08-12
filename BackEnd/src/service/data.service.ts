@@ -1,10 +1,10 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-12 18:04:16
+ * @LastEditTime: 2024-08-13 01:40:29
  */
 import { Provide } from '@midwayjs/core';
-import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../model/data.model'
+import { User, Blog, Circle, users, blogs, circles } from '../model/data.model'
 
 @Provide()
 export class DataService {
@@ -80,18 +80,13 @@ export class DataService {
 
     async createBlog(blog: Blog): Promise<Blog> {
 
-        // if (await this.getBlogByName(blog.name) == undefined)//避免用户名重复
-        // {
         const newBlog = { ...blog, id: Date.now() };
         blogs.push(newBlog);
         console.log("后端返回前blogs", blogs);
         return newBlog;
-
-
-
     }
     //
-    async getInterestCircles(): Promise<InterestCircle[]> {
-        return interestCircles;
+    async getCircles(): Promise<Circle[]> {
+        return circles;
     }
 }

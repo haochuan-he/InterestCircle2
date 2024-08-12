@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:16:41
- * @LastEditTime: 2024-08-13 00:24:59
+ * @LastEditTime: 2024-08-13 01:39:01
  */
 export interface User {
     id: number;
@@ -29,12 +29,10 @@ export interface Blog {
     allComments: Comment[],
 }
 
-export interface InterestCircle {
+export interface Circle {
     id: number;
     name: string;
-    title: string;
-    description: string;
-    circleImgURL: string;
+    lovers: User[]
 }
 
 export const users: User[] = [{
@@ -109,5 +107,38 @@ export const blogs: Blog[] = [
 
     },
 ];
-export const interestCircles: InterestCircle[] = [];
+export const circles: Circle[] = [
+    {
+        id: 1,
+        name: "越野",
+        lovers: [{
+            id: 1,
+            username: '铁蛋',
+            password: "1212",
+            userImgURL: '/images/user1.jpg',
+        }, {
+            id: 2,
+            username: '人狠话不多',
+            password: "1212",
+            userImgURL: '/images/user2.jpg',
+        }, {
+            id: 3,
+            username: '花开富贵',
+            password: "1212",
+            userImgURL: '/images/user3.jpg',
+        },
+        ]
+    }, {
+        id: 2,
+        name: "代码",
+        lovers: [
+            {
+                id: 12,
+                username: "hhc",
+                password: "1212",
+                userImgURL: "/images/defaultUser.jpg",
+            }
+        ]
+    }
+];
 

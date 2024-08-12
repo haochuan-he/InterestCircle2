@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-12 18:03:41
+ * @LastEditTime: 2024-08-13 01:54:45
  */
 import React from "react";
 import { useState, useEffect, } from 'react';
@@ -10,6 +10,7 @@ import { homeGetUser } from "../request/util.request";
 
 import ImageDropzone from "../util/ImageDropZone";
 import { createBlog } from "../request/util.request";
+import { getAllCircles } from "../request/util.request";
 
 
 
@@ -21,7 +22,7 @@ const detailRef = React.createRef();
 export default function CreateBlog() {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
-    const [circles, setCircles] = useState(null);
+    const [circles, setCircles] = useState([]);
     const [chosenCircle, setChosenCircle] = useState(null);
 
     const [imageUrl, setImageUrl] = useState('');
@@ -65,10 +66,16 @@ export default function CreateBlog() {
             console.error("Error fetching user:", error);
         });
 
-        //TODO:加载circles列表
-        setCircles([{ name: 'iKun' }, { name: '码农' }])
 
-        setChosenCircle("待选择")
+        //异步加载圈子数据
+        getAllCircles().then(ret => {
+            setCircles(ret)
+        })
+        console.log("前端加载后circles", circles)
+        // //TODO:加载circles列表
+        // setCircles([{ name: 'iKun' }, { name: '码农' }])
+
+        setChosenCircle("未选择")
         setImageUrl("/images/defaultCreateBlog.png")
 
     }, []);

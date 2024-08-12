@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-13 00:52:07
+ * @LastEditTime: 2024-08-13 01:48:50
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -56,6 +56,13 @@ export class APIController {
   async getAllUser() {
     const result = await this.dataService.getBlogs();
     console.log("后端getAllUser要返回", result)
+    return result;
+  }
+
+  @Get('/getAllCircles')
+  async getAllCircles() {
+    const result = await this.dataService.getCircles();
+    console.log("后端getAllCircles要返回", result)
     return result;
   }
 

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 14:16:37
- * @LastEditTime: 2024-08-13 00:45:32
+ * @LastEditTime: 2024-08-13 01:48:26
  */
 import * as axios from 'axios'
 
@@ -50,6 +50,13 @@ export async function getAllBlogs() {
     return result.data;
 }
 
+export async function getAllCircles() {
+    const result = await client.get(base + '/getAllCircles');
+
+    console.log("前端getAllcircles收到结果", result.data);
+    return result.data;
+}
+
 export async function createBlog(data) {
     const result = await client.post(base + '/createBlog', data);
     console.log("前端request createBlog收到结果", result.data);
@@ -59,7 +66,7 @@ export async function createBlog(data) {
 
 export async function getBlogByID(id) {
     console.log("前端request getBlogByID开始工作,id", id)
-    const result = await client.get(base + '/getBlogByID', { params: {id} });
+    const result = await client.get(base + '/getBlogByID', { params: { id } });
     console.log("前端request getBlogByID收到结果", result.data);
     return result.data;
 

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-12 00:57:53
+ * @LastEditTime: 2024-08-12 12:18:12
  */
 import React from "react";
 import { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { homeGetUser } from "../request/util.request";
 
 import ImageDropzone from "../util/ImageDropZone";
+
 
 
 const titleRef = React.createRef();
@@ -33,6 +34,11 @@ export default function CreateBlog() {
         <div>
             <ImageDropzone onImageUploaded={handleImageUploaded} />
             {imageUrl && <img src={imageUrl} alt="Uploaded Image" />}
+            {/* <img src='/images/3e2555532ed27e8a3fd885222a3448bc.png' />
+            <img src='/images/vite.svg' /> */}
+
+            {/* <img src="..\..\public\images\3e2555532ed27e8a3fd885222a3448bc.png"></img> */}
+
         </div>
     );
 

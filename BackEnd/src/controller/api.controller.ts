@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-12 11:44:28
+ * @LastEditTime: 2024-08-12 13:51:30
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -88,7 +88,11 @@ export class APIController {
     //   fs.mkdirSync(path.dirname(imagePath), { recursive: true });
     // }
 
-    fs.writeFileSync(imagePath, file.data);
+    // 读取临时文件的内容
+    const sourceStream = fs.createReadStream(file.data);
+
+    const targetStream = fs.createWriteStream(imagePath);
+    sourceStream.pipe(targetStream);
 
     return { imageURL: `../../public/images/${file.filename}` };
   }

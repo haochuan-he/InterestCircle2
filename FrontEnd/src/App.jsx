@@ -1,11 +1,11 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 14:15:47
- * @LastEditTime: 2024-08-09 20:53:32
+ * @LastEditTime: 2024-08-12 12:01:42
  */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -54,7 +54,9 @@ function OriginalApp() {//特别注意逆天bug，只有首字母大写才能被
     <>
       <div>
         <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+          {/* <img src={viteLogo} className="logo" alt="Vite logo" /> */}
+          <img src="/vite.svg" className="logo" alt="Vite logo" />
+
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />

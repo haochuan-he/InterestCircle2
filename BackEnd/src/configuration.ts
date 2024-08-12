@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-11 14:54:32
+ * @LastEditTime: 2024-08-12 11:26:13
  */
 import { Configuration, App } from '@midwayjs/core';
 import * as koa from '@midwayjs/koa';
@@ -11,6 +11,7 @@ import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
 import { join } from 'path';
 import * as session from '@midwayjs/session';
+import * as upload from '@midwayjs/upload';
 // import { DefaultErrorFilter } from './filter/default.filter';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
@@ -22,6 +23,7 @@ import { ReportMiddleware } from './middleware/report.middleware';
     crossDomain,
     validate,
     session,
+    upload,
     {
       component: info,
       enabledEnvironment: ['local'],

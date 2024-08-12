@@ -1,10 +1,10 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-12 00:55:29
- * @LastEditTime: 2024-08-12 02:03:52
+ * @LastEditTime: 2024-08-12 11:47:15
  */
 import React, { useState } from 'react';
-import axios from 'axios';
+import { imageUpload } from '../request/util.request';
 
 function ImageDropzone({ onImageUploaded }) {
     const [dragOver, setDragOver] = useState(false);
@@ -37,14 +37,22 @@ function ImageDropzone({ onImageUploaded }) {
             if (file.type.startsWith('image/')) {
                 const formData = new FormData();
                 formData.append('file', file);
+                console.log("前端try之前")
+                // alert("前端try之前")
                 try {
-                    const response = await axios.post('/api/uploadImage', formData, {
+                    // const response = await axios.post('/api/uploadImage', formData, {
+                    //     headers: {
+                    //         'Content-Type': 'multipart/form-data',
+                    //     },
+                    // });
+                    console.log("前端try formData", formData)
+                    const response = await imageUpload(formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data',
                         },
-                    });
-                    console.log("在ImageDropZone，response", response)
-                    onImageUploaded(response.data.imageUrl); // 调用父组件传递的回调函数
+                    })
+                    console.log("在ImageDropZone response", response)
+                    onImageUploaded(response); // 调用父组件传递的回调函数
                 } catch (error) {
                     console.error('Error uploading image:', error);
                 }

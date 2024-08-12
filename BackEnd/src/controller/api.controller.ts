@@ -1,9 +1,9 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-12 02:07:02
+ * @LastEditTime: 2024-08-12 11:44:28
  */
-import { Inject, Controller, Get, Query, Post, Body, File } from '@midwayjs/core';
+import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { UserService } from '../service/user.service';
 import { DataService } from '../service/data.service';
@@ -71,14 +71,25 @@ export class APIController {
   }
 
   @Post('/uploadImage')
-  async uploadImage(@File('file') file: any) {
+  async uploadImage(@File('file') file?: any) {
+    if (!file || !file.filename) {
+      console.log('后端Invalid or missing file data');
+    }
     console.log("后端/uploadImage被调用")
-    const imagePath = path.join(__dirname, '..', '..', 'FrontEnd', 'public', 'images', file.filename);
+    console.log("后端/uploadImage file", file)
 
-    // const imagePath = path.join(__dirname, '..', '..', 'dist', 'public', 'images', file.filename);//打包之后可能使用
+    const imagePath = path.join(__dirname, '..', '..', '..', 'FrontEnd', 'public', 'images', file.filename);
+    console.log("后端获取图片路径", imagePath);
 
-    fs.writeFileSync(imagePath, file.buffer);
+    // const imagePath = path.join(__dirname, '..','..', '..', 'dist', 'public', 'images', file.filename);//打包之后可能使用
 
-    return { imageUrl: `/images/${file.filename}` };
+    // // 创建目标目录，如果不存在的话
+    // if (!fs.existsSync(path.dirname(imagePath))) {
+    //   fs.mkdirSync(path.dirname(imagePath), { recursive: true });
+    // }
+
+    fs.writeFileSync(imagePath, file.data);
+
+    return { imageURL: `../../public/images/${file.filename}` };
   }
 }

@@ -15,6 +15,7 @@ import InterestDetail from './pages/InterestDetail.jsx';
 import WelcomeAndLogin from './pages/WelcomeAndLogin.jsx';
 import Register from './pages/Register.jsx';
 import CreateBlog from './pages/CreateBlog.jsx';
+import Comment from './pages/Comment.jsx';
 
 import './input.css'//必须添加这个使得TailwindCss work
 
@@ -39,6 +40,7 @@ function AppRouter() {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/createBlog" element={<CreateBlog />} />
+        <Route path="/comment" element={< Comment />} />
         <Route path="/interestCircles" element={<InterestCircles />} />
         <Route path="/interest/:id" element={<InterestDetail />} />
       </Routes>

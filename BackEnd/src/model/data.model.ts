@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:16:41
- * @LastEditTime: 2024-08-12 23:14:10
+ * @LastEditTime: 2024-08-13 00:24:59
  */
 export interface User {
     id: number;
@@ -12,7 +12,8 @@ export interface User {
 
 export interface Comment {
     id: number;
-    uid: number;
+    username: string;
+    userImgURL: string;
     content: string;
 }
 
@@ -73,12 +74,14 @@ export const blogs: Blog[] = [
         allComments: [
             {
                 id: 101,
-                uid: 1,
-                content: "我的车怎么样？不错吧"
+                username: '铁蛋',
+                userImgURL: '/images/user1.jpg',
+                content: "我的车怎么样？不错吧",
             },
             {
                 id: 102,
-                uid: 2,
+                username: '人狠话不多',
+                userImgURL: '/images/user2.jpg',
                 content: "6"
             }
         ],

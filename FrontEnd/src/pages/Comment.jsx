@@ -9,6 +9,8 @@ export default function Comment() {
     const navigate = useNavigate();
 
     const [user, setUser] = useState(null);
+    const [userEach, setUserEach] = useState(null);//对于每个已有评论的作者
+
     const [blog, setBlog] = useState([]);
     const [comments, setComments] = useState([]);
 
@@ -47,15 +49,15 @@ export default function Comment() {
 
     }
 
-
     return (
         <>
             <section className="grid min-h-screen p-8 place-items-center">
                 <div className="container grid grid-cols-1 gap-8 my-auto lg:grid-col">{/**评论更适合竖向排版 */}
                     <ShowBlog blog={blog} />
-                    <AllComments blog={blog} comments={comments} user={user} handleGoBack={handleGoBack} handleCreateComment={handleCreateComment} />
-                </div>
-            </section>
+                    <AllComments comments={comments} user={user} handleGoBack={handleGoBack} handleCreateComment={handleCreateComment}
+                    />
+                </div >
+            </section >
         </>
     )
 
@@ -80,7 +82,7 @@ function ShowBlog({ blog }) {
         </div>
     );
 }
-function AllComments({ blog, comments, handleGoBack, handleCreateComment }) {
+function AllComments({ comments, handleGoBack, handleCreateComment, handleEachUser }) {
     return (
         <>
             <section className="py-3 bg-blueGray-50">
@@ -110,20 +112,17 @@ function AllComments({ blog, comments, handleGoBack, handleCreateComment }) {
                         <div className="block w-full overflow-x-hidden">{/**hidden is better than auto */}
                             <table className="items-center bg-transparent w-full border-collapse ">
                                 <tbody>
-                                    {console.log("---", blog)}
-                                    {console.log("---all", blog.allComments)}
-                                    {console.log("---all-another", comments)}
-
                                     {
                                         comments.map((comment) => {
                                             return (<tr>
                                                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                                                    {comment.uid}
+                                                    <div className="flex items-center space-x-3 ">
+                                                        <img src={comment.userImgURL} className="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
+                                                        <h className="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5">{comment.username}</h>
+                                                    </div>
                                                 </th>
-
                                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                                    <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                                                    {comment.content}
+                                                    <p className="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-500">{comment.content}</p>
                                                 </td>
                                             </tr>)
                                         })

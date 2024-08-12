@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-12 12:18:12
+ * @LastEditTime: 2024-08-12 14:26:29
  */
 import React from "react";
 import { useState, useEffect } from 'react';
@@ -25,24 +25,8 @@ export default function CreateBlog() {
     const [imageUrl, setImageUrl] = useState('');
 
     const handleImageUploaded = (url) => {
-        alert("我有反应")
-
         setImageUrl(url);
     };
-
-    return (
-        <div>
-            <ImageDropzone onImageUploaded={handleImageUploaded} />
-            {imageUrl && <img src={imageUrl} alt="Uploaded Image" />}
-            {/* <img src='/images/3e2555532ed27e8a3fd885222a3448bc.png' />
-            <img src='/images/vite.svg' /> */}
-
-            {/* <img src="..\..\public\images\3e2555532ed27e8a3fd885222a3448bc.png"></img> */}
-
-        </div>
-    );
-
-
 
     useEffect(() => {
         // 获取当前URL
@@ -61,6 +45,7 @@ export default function CreateBlog() {
         //加载circles列表
         setCircles([{ name: 'iKun' }, { name: '码农' }])
         setChosenCircle("待选择")
+        setImageUrl("/images/defaultCreateBlog.png")
 
     }, []);
 
@@ -70,7 +55,8 @@ export default function CreateBlog() {
                 <div>
                     {/* <h1>现在的ID为{user.id}</h1>
                         <h1>现在的名字为{user.username}</h1> */}
-                    <Main user={user} circles={circles} chosenCircle={chosenCircle} setChosenCircle={setChosenCircle} />
+                    <Main user={user} circles={circles} chosenCircle={chosenCircle} setChosenCircle={setChosenCircle}
+                        imageUrl={imageUrl} handleImageUploaded={handleImageUploaded} />
                     {/* <DropDown circles={circles} /> */}
                 </div>
             ) : (
@@ -117,7 +103,7 @@ function DropDown({ circles, chosenCircle, setChosenCircle }) {
     </>)
 }
 
-function Main({ user, circles, chosenCircle, setChosenCircle }) {
+function Main({ user, circles, chosenCircle, setChosenCircle, imageUrl, handleImageUploaded }) {
     return (
         <>
             <section class="text-gray-600 body-font">
@@ -178,11 +164,12 @@ function Main({ user, circles, chosenCircle, setChosenCircle }) {
 
 
                     </div>
-                    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                        <img src="https://dummyimage.com/720x600" />
+                    <div class="lg:max-w-lg lg:w-1/2 md:w-1/2">
+                        {imageUrl && <img src={imageUrl} alt="Uploaded Image" className="object-fit:cover" />}
+                        <ImageDropzone onImageUploaded={handleImageUploaded} />
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     )
 }

@@ -67,7 +67,7 @@ function ImageDropzone({ onImageUploaded }) {
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
         >
-            <p>Drag and drop images here or click to select files</p>
+            <p>将图片拖放到这里上传</p>
         </div>
     );
 }

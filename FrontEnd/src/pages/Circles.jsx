@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:28:18
- * @LastEditTime: 2024-08-13 02:59:06
+ * @LastEditTime: 2024-08-13 03:14:50
  */
 import React, { useState, useEffect } from 'react';
 import { homeGetUser } from '../request/util.request';
@@ -48,9 +48,9 @@ function Main({ circles }) {
 
     return (
         <>
-            <section className="relative py-16 bg-blueGray-50">
+            <section className="relative py-16 bg-blueGray-50 ">
                 <div className="w-full mb-12 px-4">{/**改动px- */}
-                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-indigo-700 text-white">
+                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-md bg-indigo-700 text-white">
                         <div className="rounded-t mb-0 px-4 py-3 border-0">
                             <div className="flex flex-wrap items-center">
                                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 ">
@@ -62,8 +62,8 @@ function Main({ circles }) {
                             <table className="items-center w-full bg-transparent border-collapse">{/**w-full */}
                                 <thead>
                                     <tr>
-                                        <th className="px-96 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 
-                                        whitespace-nowrap font-bold text-left bg-indigo-500 text-purple-300 border-indigo-500">兴趣圈</th>{/**改动px- */}
+                                        <th className="px-48 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 
+                                        whitespace-nowrap font-bold text-left bg-indigo-500 text-purple-300 border-indigo-500">在对应兴趣圈类型中发帖，即可成为兴趣圈活跃用户</th>{/**改动px- */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,15 +84,6 @@ function Main({ circles }) {
                                                                         // {/** -ml-4 */ }
                                                                     )
                                                                 })}
-                                                            </div>
-                                                        </td>
-                                                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                                            <div className="flex items-center">
-                                                                <div className="relative w-full">
-                                                                    <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                                                                        <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                         </td>
                                                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">

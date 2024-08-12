@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-13 01:40:29
+ * @LastEditTime: 2024-08-13 03:22:53
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, Circle, users, blogs, circles } from '../model/data.model'
@@ -89,4 +89,15 @@ export class DataService {
     async getCircles(): Promise<Circle[]> {
         return circles;
     }
+
+    async getCircleByName(name: string): Promise<Circle | undefined> {
+        return circles.find(circle => circle.name === name);
+    }
+
+    async addLover(circle: string, user: User) {
+        const c = await this.getCircleByName(circle);
+        c.lovers.push(user);
+    }
+
+
 }

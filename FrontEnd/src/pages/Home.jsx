@@ -1,13 +1,15 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-12 22:15:53
+ * @LastEditTime: 2024-08-13 03:12:08
  */
 
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllBlogs, homeGetUser } from '../request/util.request';
+
+import Circles from './Circles';
 
 export default function Home() {
 
@@ -41,6 +43,7 @@ export default function Home() {
                     {/* <h1>现在的ID为{user.id}</h1>
                         <h1>现在的名字为{user.username}</h1> */}
                     <Head user={user} />
+                    <Circles />
                     <Content blogs={blogs} user={user} />
                 </div>
             ) : (
@@ -97,21 +100,21 @@ function Head({ user }) {
                             <img src={user.userImgURL} className="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
                             {/*https://bucket.material-tailwind.com/magic-ai/6b1c5941d417a2a32baee89c2f3d1975d7d4fb81e486ed43dc1082ac54b0658b.jpg */}
                             <li>
-                                <a
-                                    href="/"
-                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
+                                <div
+                                    className="font-bold tracking-wide text-gray-700 transition-colors duration-200"
                                 >
-                                    个人主页
-                                </a>
+                                    {user.username}
+                                </div>
                             </li>
                         </div>
                         <li>
-                            <a
+                            {/* {<a
                                 href="/"
                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                             >
                                 所有兴趣圈
-                            </a>
+                            </a>} */}
+                            探索未知 · 分享热爱 · 表达自我
                         </li>
                     </ul>
                     <span

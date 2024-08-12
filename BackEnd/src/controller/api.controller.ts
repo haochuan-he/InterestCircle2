@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-13 01:56:23
+ * @LastEditTime: 2024-08-13 03:22:20
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -121,7 +121,7 @@ export class APIController {
   @Post('/createBlog')
   async createBlog(@Body() body: any) {
     const user = await this.dataService.getUserById(body.uid);
-
+    await this.dataService.addLover(body.circle, user);
     await this.dataService.createBlog({
       id: -1,
 

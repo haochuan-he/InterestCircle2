@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:16:41
- * @LastEditTime: 2024-08-12 21:38:23
+ * @LastEditTime: 2024-08-12 23:14:10
  */
 export interface User {
     id: number;
@@ -41,7 +41,24 @@ export const users: User[] = [{
     username: "hhc",
     password: "1212",
     userImgURL: "/images/defaultUser.jpg",
-}];
+},
+{
+    id: 1,
+    username: '铁蛋',
+    password: "1212",
+    userImgURL: '/images/user1.jpg',
+}, {
+    id: 2,
+    username: '人狠话不多',
+    password: "1212",
+    userImgURL: '/images/user2.jpg',
+}, {
+    id: 3,
+    username: '花开富贵',
+    password: "1212",
+    userImgURL: '/images/user3.jpg',
+},
+];
 
 export const blogs: Blog[] = [
     {
@@ -53,7 +70,18 @@ export const blogs: Blog[] = [
         name: '铁蛋',
         date: '2024-08-12',
         userImgURL: '/images/user1.jpg',
-        allComments: [],
+        allComments: [
+            {
+                id: 101,
+                uid: 1,
+                content: "我的车怎么样？不错吧"
+            },
+            {
+                id: 102,
+                uid: 2,
+                content: "6"
+            }
+        ],
     }, {
         id: 2,
         circle: '越野',

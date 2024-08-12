@@ -1,11 +1,11 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-12 17:33:39
+ * @LastEditTime: 2024-08-12 18:03:41
  */
 import React from "react";
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { homeGetUser } from "../request/util.request";
 
 import ImageDropzone from "../util/ImageDropZone";
@@ -19,6 +19,7 @@ const detailRef = React.createRef();
 
 
 export default function CreateBlog() {
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [circles, setCircles] = useState(null);
     const [chosenCircle, setChosenCircle] = useState(null);
@@ -30,6 +31,7 @@ export default function CreateBlog() {
     };
 
     async function handleCreate() {
+
         // 获取表单数据
         const title = titleRef.current.value;
         const detail = detailRef.current.value;
@@ -39,10 +41,9 @@ export default function CreateBlog() {
             title: title, detail: detail, circle: chosenCircle, blogImgURL: imageUrl, uid: user.id
         });
         console.log("前端handleCreate得到结果", result);
-        console.log("前端handleCreate得到结果", result.data);
 
         // 跳转到首页
-        if (result.data.success) {
+        if (result) {
             console.log("现在的用户ID为", user.id);
             navigate('/home?uid=' + user.id);
         } else {
@@ -79,7 +80,7 @@ export default function CreateBlog() {
                     {/* <h1>现在的ID为{user.id}</h1>
                         <h1>现在的名字为{user.username}</h1> */}
                     <Main user={user} circles={circles} chosenCircle={chosenCircle} setChosenCircle={setChosenCircle}
-                        imageUrl={imageUrl} handleImageUploaded={handleImageUploaded} />
+                        imageUrl={imageUrl} handleImageUploaded={handleImageUploaded} handleCreate={handleCreate} />
                     {/* <DropDown circles={circles} /> */}
                 </div>
             ) : (
@@ -126,7 +127,7 @@ function DropDown({ circles, chosenCircle, setChosenCircle }) {
     </>)
 }
 
-function Main({ user, circles, chosenCircle, setChosenCircle, imageUrl, handleImageUploaded }) {
+function Main({ user, circles, chosenCircle, setChosenCircle, imageUrl, handleImageUploaded, handleCreate }) {
     return (
         <>
             <section class="text-gray-600 body-font">
@@ -175,7 +176,7 @@ function Main({ user, circles, chosenCircle, setChosenCircle, imageUrl, handleIm
                             <div className="mt-4 mb-2 sm:mb-4">
                                 <button
                                     className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                                // onClick={handleLogin}
+                                    onClick={handleCreate}
                                 >
                                     发布
                                 </button>

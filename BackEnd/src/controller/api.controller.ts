@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-12 17:54:56
+ * @LastEditTime: 2024-08-12 18:02:23
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -118,5 +118,7 @@ export class APIController {
       date: this.dataService.getDateTime().date,
       userImgURL: user.userImgURL,
     })
+
+    return { success: true };
   }
 }

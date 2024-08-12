@@ -53,7 +53,7 @@ export async function getAllBlogs() {
 export async function createBlog(data) {
     const result = await client.post(base + '/createBlog', data);
     console.log("前端request createBlog收到结果", result.data);
-    return result.data;
+    return result.data.success;
 
 }
 

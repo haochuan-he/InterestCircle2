@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-12 17:57:05
+ * @LastEditTime: 2024-08-12 18:04:16
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../model/data.model'
@@ -75,22 +75,15 @@ export class DataService {
     }
 
     async createBlog(blog: Blog): Promise<Blog> {
-        // console.log("后端DataService", user)
-        // console.log("后端DataService", this.getUserByName(user.username) )
-        // console.log("现在所有用户", this.getUsers())
 
         // if (await this.getBlogByName(blog.name) == undefined)//避免用户名重复
         // {
-        // console.log("创建新用户");
         const newBlog = { ...blog, id: Date.now() };
-        // const user=this.getUserById()
         blogs.push(newBlog);
-        // console.log("新用户is", newUser);
-
+        console.log("后端返回前blogs", blogs);
         return newBlog;
-        // } else {
-        //     return undefined;
-        // }
+
+
 
     }
     //

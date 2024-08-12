@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 14:16:37
- * @LastEditTime: 2024-08-12 11:44:42
+ * @LastEditTime: 2024-08-12 15:17:23
  */
 import * as axios from 'axios'
 
@@ -42,3 +42,11 @@ export async function imageUpload(formData, anotherData) {
     console.log("前端收到结果", result.data.imageURL);
     return result.data.imageURL;
 }
+
+export async function getAllBlogs() {
+    const result = await client.get(base + '/getAllUser');
+
+    console.log("前端getAllblogs收到结果", result.data);
+    return result.data;
+}
+

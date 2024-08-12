@@ -1,17 +1,18 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-11 20:48:27
+ * @LastEditTime: 2024-08-12 15:18:28
  */
 
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { homeGetUser } from '../request/util.request';
+import { getAllBlogs, homeGetUser } from '../request/util.request';
 
 export default function Home() {
 
     const [user, setUser] = useState(null);
+    const [blogs, setBlogs] = useState([]);
     useEffect(() => {
         // 获取当前URL
         const url = new URL(window.location.href);
@@ -25,6 +26,12 @@ export default function Home() {
         }).catch(error => {
             console.error("Error fetching user:", error);
         });
+
+        //异步加载帖子数据
+        getAllBlogs().then(ret => {
+            setBlogs(ret)
+        })
+        // console.log("前端加载后blogs", blogs)
     }, []);
 
     return (
@@ -34,7 +41,7 @@ export default function Home() {
                     {/* <h1>现在的ID为{user.id}</h1>
                         <h1>现在的名字为{user.username}</h1> */}
                     <Head user={user} />
-                    <Content user={user} />
+                    <Content blogs={blogs} />
                 </div>
             ) : (
                 <div>Loading...</div>
@@ -44,79 +51,7 @@ export default function Home() {
     //TODO:完成主页页面设计
 }
 
-const blogs = [
-    {
-        id: 1,
-        circle: 'Technology',
-        title: 'Revolutionizing Our Production Process',
-        detail: 'Learn how our recent investment in new technology has revolutionized our production process, leading to improved efficiency and product quality.',
-        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/06b38f84f9669f766048c469ce861b81880378273a11ae9badaedfc32868ef44.jpg',
-        name: 'John Doe',
-        date: '2022-08-15',
-        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/6b1c5941d417a2a32baee89c2f3d1975d7d4fb81e486ed43dc1082ac54b0658b.jpg',
-    }, {
-        id: 2,
-        circle: 'Sustainability',
-        title: 'Sustainable Practices for a Greener Future',
-        detail: 'Find out how our investment in sustainable practices is driving us towards a greener future, showcasing our commitment to environmental responsibility.',
-        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/dc74a867f21afc734166a6d37c08beaba4ff040664ba8ccce918e054264ad68d.jpg',
-        name: 'Alex Johnson',
-        date: '2022-09-20',
-        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/2fadd7f00b6d08fc9dcacef52af357ec1213c0415ab97ace57ae0f17c7f6c2c8.jpg',
-    }, {
-        id: 3,
-        circle: 'Expansion',
-        title: 'Expanding Our Service Network',
-        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
-        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
-        name: 'Jane Smith',
-        date: '2022-08-16',
-        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
-    }, {
-        id: 4,
-        circle: 'Expansion',
-        title: 'Expanding Our Service Network',
-        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
-        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
-        name: 'Jane Smith',
-        date: '2022-08-16',
-        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
-    }, {
-        id: 5,
-        circle: 'Expansion',
-        title: 'Expanding Our Service Network',
-        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
-        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
-        name: 'Jane Smith',
-        date: '2022-08-16',
-        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
-    }, {
-        id: 6,
-        circle: 'Expansion',
-        title: 'Expanding Our Service Network',
-        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
-        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
-        name: 'Jane Smith',
-        date: '2022-08-16',
-        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
-    }, {
-        id: 7,
-        circle: 'Expansion',
-        title: 'Expanding Our Service Network',
-        detail: 'Discover how our expansion investment has allowed us to enhance our service network, providing better support and customer experience.',
-        blogImgURL: 'https://bucket.material-tailwind.com/magic-ai/e7aa235a7bc5f504db1c66e27ece08f8118b1da6b21c013500391afcd572cf7d.jpg',
-        name: 'Jane Smith',
-        date: '2022-08-16',
-        userImgURL: 'https://bucket.material-tailwind.com/magic-ai/16d71aaeda38d7aea4412875984357949ff12e7f2c502bb20c4c1bcf6c661607.jpg',
-    },
-]
-//
-//
-//
-//
-//
-
-function Content() {
+function Content({ blogs }) {
 
     return (
         <>
@@ -159,7 +94,8 @@ function Head({ user }) {
                 <div className="relative flex  items-center grid-cols-2 lg:grid-cols-3">
                     <ul className="flex items-center  space-x-8 lg:flex">
                         <div className="flex items-center  space-x-2 lg:flex">
-                            <img src="https://bucket.material-tailwind.com/magic-ai/6b1c5941d417a2a32baee89c2f3d1975d7d4fb81e486ed43dc1082ac54b0658b.jpg" className="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
+                            <img src={user.userImgURL} className="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
+                            {/*https://bucket.material-tailwind.com/magic-ai/6b1c5941d417a2a32baee89c2f3d1975d7d4fb81e486ed43dc1082ac54b0658b.jpg */}
                             <li>
                                 <a
                                     href="/"

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-11 21:05:51
+ * @LastEditTime: 2024-08-12 15:03:11
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../model/data.model'
@@ -17,6 +17,7 @@ export class DataService {
         {
             // console.log("创建新用户");
             const newUser = { ...user, id: Date.now() };//id采用时间戳保证唯一性；解构赋值（...user）来复制传入的 user 对象的所有属性
+            newUser.userImgURL = "/images/defaultUser.jpg"
             users.push(newUser);
             // console.log("新用户is", newUser);
 
@@ -61,23 +62,27 @@ export class DataService {
     async getBlogByName(name: string): Promise<Blog | undefined> {
         return blogs.find(blog => blog.name === name);
     }
+    async getBlogByCircle(circle: string): Promise<Blog | undefined> {
+        return blogs.find(blog => blog.circle === circle);
+    }
 
     async createBlog(blog: Blog): Promise<Blog> {
         // console.log("后端DataService", user)
         // console.log("后端DataService", this.getUserByName(user.username) )
         // console.log("现在所有用户", this.getUsers())
 
-        if (await this.getBlogByName(blog.name) == undefined)//避免用户名重复
-        {
-            // console.log("创建新用户");
-            const newBlog = { ...blog, id: Date.now() };
-            blogs.push(newBlog);
-            // console.log("新用户is", newUser);
+        // if (await this.getBlogByName(blog.name) == undefined)//避免用户名重复
+        // {
+        // console.log("创建新用户");
+        const newBlog = { ...blog, id: Date.now() };
+        // const user=this.getUserById()
+        blogs.push(newBlog);
+        // console.log("新用户is", newUser);
 
-            return newBlog;
-        } else {
-            return undefined;
-        }
+        return newBlog;
+        // } else {
+        //     return undefined;
+        // }
 
     }
     //

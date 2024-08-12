@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getBlogByID } from '../request/util.request';
 import { homeGetUser } from '../request/util.request';
-
+import { createComment } from '../request/util.request';
+const commentRef = React.createRef();
 
 export default function Comment() {
     const navigate = useNavigate();
@@ -45,7 +46,24 @@ export default function Comment() {
         navigate('/home?uid=' + user.id);
     }
 
-    function handleCreateComment() {
+    async function handleCreateComment() {
+        const content = commentRef.current.value;
+
+        // TODO: 后端处理
+        const result = await createComment({
+            bid: blog.id, username: user.username, userImgURL: user.userImgURL, content: content
+        });
+        console.log("前端handleCreateComment得到结果", result);
+
+        // TODO:反馈
+        if (result) {
+            console.log("完成评论发布");
+            console.log("当前用户头像路径", user.userImgURL)
+            window.location.reload();
+
+        } else {
+            alert("发布失败，服务器故障！");
+        }
 
     }
 
@@ -82,7 +100,8 @@ function ShowBlog({ blog }) {
         </div>
     );
 }
-function AllComments({ comments, handleGoBack, handleCreateComment, handleEachUser }) {
+
+function AllComments({ comments, handleGoBack, handleCreateComment }) {
     return (
         <>
             <section className="py-3 bg-blueGray-50">
@@ -94,6 +113,17 @@ function AllComments({ comments, handleGoBack, handleCreateComment, handleEachUs
                                 <div className="relative w-full px-4 max-w-full flex-grow flex-1">
                                     <h3 className="font-semibold text-base text-blueGray-700">评论</h3>
                                 </div>
+
+                                <input
+                                    ref={commentRef}
+                                    placeholder="输入您的评论"
+                                    required
+                                    type="text"
+                                    className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                                    id="Password"
+                                    name="Password"
+                                />
+
                                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                                     <button className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
                                         onClick={handleCreateComment}>
@@ -114,17 +144,20 @@ function AllComments({ comments, handleGoBack, handleCreateComment, handleEachUs
                                 <tbody>
                                     {
                                         comments.map((comment) => {
-                                            return (<tr>
-                                                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                                                    <div className="flex items-center space-x-3 ">
-                                                        <img src={comment.userImgURL} className="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
-                                                        <h className="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5">{comment.username}</h>
-                                                    </div>
-                                                </th>
-                                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                                    <p className="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-500">{comment.content}</p>
-                                                </td>
-                                            </tr>)
+                                            return (
+
+                                                <tr key={comment.id}>
+                                                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                                                        <div className="flex items-center space-x-2 ">
+                                                            <img src={comment.userImgURL} className="inline-block relative object-cover object-center !rounded-full w-12 h-12" />
+                                                            <h className="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 mb-0.5">{comment.username}</h>
+                                                        </div>
+                                                    </th>
+                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                        <p className="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-500">{comment.content}</p>
+                                                    </td>
+                                                </tr>
+                                            )
                                         })
                                     }
                                 </tbody>

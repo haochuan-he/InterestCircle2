@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-12 22:20:45
+ * @LastEditTime: 2024-08-13 00:52:07
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -128,6 +128,20 @@ export class APIController {
       allComments: [],
     })
 
+    return { success: true };
+  }
+
+  @Post('/createComment')
+  async createComment(@Body() body: any) {
+    const blog = await this.dataService.getBlogById(body.bid);
+    blog.allComments.push({
+      id: Date.now(),
+      username: body.username,
+      userImgURL: body.userImgURL,
+      content: body.content
+    })
+
+    console.log("后端完成创建评论，现在所在blog", blog)
     return { success: true };
   }
 }

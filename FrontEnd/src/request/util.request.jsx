@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 14:16:37
- * @LastEditTime: 2024-08-12 22:20:14
+ * @LastEditTime: 2024-08-13 00:45:32
  */
 import * as axios from 'axios'
 
@@ -62,6 +62,13 @@ export async function getBlogByID(id) {
     const result = await client.get(base + '/getBlogByID', { params: {id} });
     console.log("前端request getBlogByID收到结果", result.data);
     return result.data;
+
+}
+
+export async function createComment(data) {
+    const result = await client.post(base + '/createComment', data);
+    console.log("前端request createComment收到结果", result.data);
+    return result.data.success;
 
 }
 

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-12 15:10:48
+ * @LastEditTime: 2024-08-12 17:54:56
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -101,5 +101,22 @@ export class APIController {
     sourceStream.pipe(targetStream);
 
     return { imageURL: `../../public/images/${file.filename}` };
+  }
+
+  @Post('/createBlog')
+  async createBlog(@Body() body: any) {
+    const user = await this.dataService.getUserById(body.uid);
+
+    await this.dataService.createBlog({
+      id: -1,
+
+      circle: body.circle,
+      title: body.title,
+      detail: body.detail,
+      blogImgURL: body.blogImgURL,
+      name: user.username,
+      date: this.dataService.getDateTime().date,
+      userImgURL: user.userImgURL,
+    })
   }
 }

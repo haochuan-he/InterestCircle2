@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-12 14:26:29
+ * @LastEditTime: 2024-08-12 17:33:39
  */
 import React from "react";
 import { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { homeGetUser } from "../request/util.request";
 
 import ImageDropzone from "../util/ImageDropZone";
+import { createBlog } from "../request/util.request";
 
 
 
@@ -28,6 +29,27 @@ export default function CreateBlog() {
         setImageUrl(url);
     };
 
+    async function handleCreate() {
+        // 获取表单数据
+        const title = titleRef.current.value;
+        const detail = detailRef.current.value;
+
+        // TODO: 后端处理
+        const result = await createBlog({
+            title: title, detail: detail, circle: chosenCircle, blogImgURL: imageUrl, uid: user.id
+        });
+        console.log("前端handleCreate得到结果", result);
+        console.log("前端handleCreate得到结果", result.data);
+
+        // 跳转到首页
+        if (result.data.success) {
+            console.log("现在的用户ID为", user.id);
+            navigate('/home?uid=' + user.id);
+        } else {
+            alert("发布失败，服务器故障！");
+        }
+    }
+
     useEffect(() => {
         // 获取当前URL
         const url = new URL(window.location.href);
@@ -42,8 +64,9 @@ export default function CreateBlog() {
             console.error("Error fetching user:", error);
         });
 
-        //加载circles列表
+        //TODO:加载circles列表
         setCircles([{ name: 'iKun' }, { name: '码农' }])
+
         setChosenCircle("待选择")
         setImageUrl("/images/defaultCreateBlog.png")
 

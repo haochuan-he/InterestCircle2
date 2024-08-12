@@ -1,13 +1,21 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-12 15:03:11
+ * @LastEditTime: 2024-08-12 17:57:05
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, InterestCircle, users, blogs, interestCircles } from '../model/data.model'
 
 @Provide()
 export class DataService {
+
+    getDateTime() {
+        const date = new Date();
+        const dateString = date.toISOString().split('T')[0]; // 2024-08-12
+        console.log("后端生成日期：", dateString);
+        return { date: dateString };
+    }
+
     async createUser(user: User): Promise<User> {
         // console.log("后端DataService", user)
         // console.log("后端DataService", this.getUserByName(user.username) )

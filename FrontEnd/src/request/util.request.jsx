@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 14:16:37
- * @LastEditTime: 2024-08-12 15:17:23
+ * @LastEditTime: 2024-08-12 17:39:42
  */
 import * as axios from 'axios'
 
@@ -48,5 +48,12 @@ export async function getAllBlogs() {
 
     console.log("前端getAllblogs收到结果", result.data);
     return result.data;
+}
+
+export async function createBlog(data) {
+    const result = await client.post(base + '/createBlog', data);
+    console.log("前端request createBlog收到结果", result.data);
+    return result.data;
+
 }
 

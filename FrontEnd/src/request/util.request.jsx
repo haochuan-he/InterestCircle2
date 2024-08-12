@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 14:16:37
- * @LastEditTime: 2024-08-13 01:56:02
+ * @LastEditTime: 2024-08-13 03:43:44
  */
 import * as axios from 'axios'
 
@@ -78,5 +78,14 @@ export async function createComment(data) {
     return result.data.success;
 
 }
+
+export async function createCircle(data) {
+    const result = await client.post(base + '/createCircle', data);
+    console.log("前端request createCircle收到结果", result.data);
+    return result.data;
+
+}
+
+
 
 

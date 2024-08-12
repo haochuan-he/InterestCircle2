@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 20:21:22
- * @LastEditTime: 2024-08-13 03:22:53
+ * @LastEditTime: 2024-08-13 03:48:03
  */
 import { Provide } from '@midwayjs/core';
 import { User, Blog, Circle, users, blogs, circles } from '../model/data.model'
@@ -98,6 +98,13 @@ export class DataService {
         const c = await this.getCircleByName(circle);
         c.lovers.push(user);
     }
+
+    // async createCircle(circle: Circle): Promise<Circle> {
+
+    //     const newCircle = { ...circle, id: Date.now() };
+    //     circles.push(newCircle);
+    //     return;
+    // }
 
 
 }

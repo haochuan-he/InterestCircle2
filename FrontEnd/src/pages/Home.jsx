@@ -43,7 +43,7 @@ export default function Home() {
                     {/* <h1>现在的ID为{user.id}</h1>
                         <h1>现在的名字为{user.username}</h1> */}
                     <Head user={user} />
-                    <Circles />
+                    <Circles user={user} />
                     <Content blogs={blogs} user={user} />
                 </div>
             ) : (

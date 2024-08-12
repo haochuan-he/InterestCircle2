@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-13 03:22:20
+ * @LastEditTime: 2024-08-13 03:51:30
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -10,6 +10,7 @@ import { DataService } from '../service/data.service';
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { circles } from '../model/data.model';
 @Controller('/api')
 export class APIController {
   @Inject()
@@ -149,6 +150,19 @@ export class APIController {
     })
 
     console.log("后端完成创建评论，现在所在blog", blog)
+    return { success: true };
+  }
+
+  @Post('/createCircle')
+  async createCircle(@Body() body: any) {
+    const users = body.user;
+    circles.push({
+      id: Date.now(),
+      name: body.name,
+      lovers: [users]
+    })
+
+    console.log("后端完成创建圈子")
     return { success: true };
   }
 }

@@ -1,16 +1,40 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:28:18
- * @LastEditTime: 2024-08-13 03:14:50
+ * @LastEditTime: 2024-08-13 03:54:11
  */
 import React, { useState, useEffect } from 'react';
 import { homeGetUser } from '../request/util.request';
 import { getAllCircles } from '../request/util.request';
+import { createCircle } from '../request/util.request';
 
-export default function Circles() {
+const circleRef = React.createRef();
+
+
+export default function Circles({ user }) {
 
     const [circles, setCircles] = useState([]);
     // const [lovers, setLovers] = useState([]);
+
+    async function handleCreateCircle() {
+        const name = circleRef.current.value;
+        let have = false;
+        circles.map((circle) => {
+            if (name == circle.name) {
+                have = true;
+            }
+        })
+
+        if (have) {
+            alert("创建失败，兴趣圈已经存在！")
+            return;
+        }
+
+        createCircle({ name: name, user: user }).then(() => {
+            alert("创建成功！您是这个兴趣圈的第一位活跃用户！");
+            window.location.reload();
+        })
+    }
 
     useEffect(() => {
         // 获取当前URL
@@ -19,12 +43,12 @@ export default function Circles() {
         // 获取查询参数
         const uid = url.searchParams.get('uid');
 
-        // 异步加载用户数据
-        homeGetUser(uid).then(response => {
-            setUser(response);
-        }).catch(error => {
-            console.error("Error fetching user:", error);
-        });
+        // // 异步加载用户数据
+        // homeGetUser(uid).then(response => {
+        //     setUser(response);
+        // }).catch(error => {
+        //     console.error("Error fetching user:", error);
+        // });
 
 
         //异步加载圈子数据
@@ -38,13 +62,13 @@ export default function Circles() {
     return (
 
         <>
-            <Main circles={circles} />
+            <Main circles={circles} handleCreateCircle={handleCreateCircle} />
         </>
 
     )
 }
 
-function Main({ circles }) {
+function Main({ circles, handleCreateCircle }) {
 
     return (
         <>
@@ -54,7 +78,7 @@ function Main({ circles }) {
                         <div className="rounded-t mb-0 px-4 py-3 border-0">
                             <div className="flex flex-wrap items-center">
                                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 ">
-                                    <h3 className="font-semibold text-lg text-white">兴趣圈活跃情况详情</h3>
+                                    <h3 className="font-semibold text-lg text-white">兴趣圈活跃情况详情（在对应兴趣圈类型中发帖，即可成为兴趣圈活跃用户）</h3>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +86,25 @@ function Main({ circles }) {
                             <table className="items-center w-full bg-transparent border-collapse">{/**w-full */}
                                 <thead>
                                     <tr>
-                                        <th className="px-48 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 
-                                        whitespace-nowrap font-bold text-left bg-indigo-500 text-purple-300 border-indigo-500">在对应兴趣圈类型中发帖，即可成为兴趣圈活跃用户</th>{/**改动px- */}
+                                        <th className="px-48 align-middle border border-solid py-2 text-xs uppercase border-l-0 border-r-0 
+                                        whitespace-nowrap font-bold text-left bg-indigo-500 text-purple-300 border-indigo-500">
+                                            <input
+                                                ref={circleRef}
+                                                placeholder="为您的兴趣圈取名"
+                                                required
+                                                type="text"
+                                                className="flex-grow w-full h-12 px-3 mb-2 transition duration-200 bg-indigo-400 rounded shadow-gray-400 appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                                                id="Password"
+                                                name="Password"
+                                            />
+                                            <button className="bg-blue-500 text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-4 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
+                                                onClick={handleCreateCircle}
+                                            >
+                                                创建兴趣圈
+                                            </button>
+
+
+                                        </th>{/**改动px- */}
                                     </tr>
                                 </thead>
                                 <tbody>

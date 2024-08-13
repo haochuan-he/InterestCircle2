@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-13 03:51:30
+ * @LastEditTime: 2024-08-13 14:01:48
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -100,10 +100,11 @@ export class APIController {
     console.log("后端/uploadImage被调用")
     console.log("后端/uploadImage file", file)
 
-    const imagePath = path.join(__dirname, '..', '..', '..', 'FrontEnd', 'public', 'images', file.filename);
+    // const imagePath = path.join(__dirname, '..', '..', '..', 'FrontEnd', 'public', 'images', file.filename);
+    const imagePath = path.join(__dirname, '..', '..', '..', 'dist', 'public', 'images', file.filename);//打包之后可能使用
+
     console.log("后端获取图片路径", imagePath);
 
-    // const imagePath = path.join(__dirname, '..','..', '..', 'dist', 'public', 'images', file.filename);//打包之后可能使用
 
     // // 创建目标目录，如果不存在的话
     // if (!fs.existsSync(path.dirname(imagePath))) {

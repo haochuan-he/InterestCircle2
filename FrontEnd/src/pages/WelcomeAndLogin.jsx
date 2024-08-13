@@ -45,12 +45,9 @@ export default function WelcomeAndLogin() {
             // zIndex: -1,
             maxWidth: "100%",
             maxHeight: "100%",
-            // backgroundImage: "url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80)",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
         }} className="relative">
             <img
-                src="https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                src="/images/Welcome.jpeg"
                 className="absolute inset-0 object-cover w-full h-full"
                 alt=""
             />

@@ -22,7 +22,8 @@ export async function checkLogin(data) {
 export async function register(data) {
     // console.log("前端register中", data)
     const result = await client.post(base + '/register', data);
-    return result;
+    // console.log("注册返回", result.data.success)
+    return result.data.success;
 }
 
 export async function homeGetUser(uid) {

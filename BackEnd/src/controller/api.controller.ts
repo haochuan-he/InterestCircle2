@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-13 21:39:39
+ * @LastEditTime: 2024-08-13 22:13:37
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -84,11 +84,10 @@ export class APIController {
 
     const dataUser = await this.dataService.createUser({ id: -1, userImgURL: '', username: username, password: password });
 
-    // console.log("后端创建用户为", dataUser);
     if (dataUser == undefined) {
       return { success: false, message: 'OK', data: '' }
     } else {
-      return dataUser;
+      return { success: true, message: 'OK', data: '' };
     }
   }
 

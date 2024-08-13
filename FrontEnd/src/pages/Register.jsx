@@ -27,10 +27,10 @@ export default function Register() {
         } else {
             // TODO: 后端处理
             const result = await register({ UserName: username, Password: password });
-            // console.log("前端得到结果result", result);
+            // console.log("前端register得到结果result", result);
             // console.log(result.data);
 
-            if (result.data.id != -1) {
+            if (result == true) {
                 alert("注册成功！");
                 navigate('/');
             }

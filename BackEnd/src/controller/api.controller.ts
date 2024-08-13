@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-13 17:17:47
+ * @LastEditTime: 2024-08-13 21:39:39
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -105,10 +105,8 @@ export class APIController {
     const imagePath = path.join(process.cwd(), 'dist', 'images', file.filename);//要求可执行文件和前端dist在同一文件夹下
 
 
-
     console.log("后端获取图片路径", imagePath);
 
-    // const imagePath = path.join(__dirname, '..','..', '..', 'dist', 'public', 'images', file.filename);//打包之后可能使用
 
     // // 创建目标目录，如果不存在的话
     // if (!fs.existsSync(path.dirname(imagePath))) {

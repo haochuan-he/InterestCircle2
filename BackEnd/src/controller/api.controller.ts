@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-10 13:52:15
- * @LastEditTime: 2024-08-13 03:51:30
+ * @LastEditTime: 2024-08-13 17:17:47
  */
 import { Inject, Controller, Get, Query, Post, Body, File, } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
@@ -100,7 +100,12 @@ export class APIController {
     console.log("后端/uploadImage被调用")
     console.log("后端/uploadImage file", file)
 
-    const imagePath = path.join(__dirname, '..', '..', '..', 'FrontEnd', 'public', 'images', file.filename);
+    // const imagePath = path.join(__dirname, '..', '..', '..', 'FrontEnd', 'public', 'images', file.filename);
+    // const imagePath = path.join(process.cwd(), '..', '..', 'FrontEnd', 'public', 'images', file.filename);//对打包后目录层数有要求
+    const imagePath = path.join(process.cwd(), 'dist', 'images', file.filename);//要求可执行文件和前端dist在同一文件夹下
+
+
+
     console.log("后端获取图片路径", imagePath);
 
     // const imagePath = path.join(__dirname, '..','..', '..', 'dist', 'public', 'images', file.filename);//打包之后可能使用
@@ -115,8 +120,9 @@ export class APIController {
 
     const targetStream = fs.createWriteStream(imagePath);
     sourceStream.pipe(targetStream);
+    console.log("后端准备返回图片路径", `/images/${file.filename}`);
 
-    return { imageURL: `../../public/images/${file.filename}` };
+    return { imageURL: `/images/${file.filename}` };//不改，没问题
   }
 
   @Post('/createBlog')

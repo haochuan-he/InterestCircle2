@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-11 20:28:25
- * @LastEditTime: 2024-08-13 01:52:49
+ * @LastEditTime: 2024-08-13 21:32:24
  */
 import React from "react";
 import { useState, useEffect, } from 'react';
@@ -53,11 +53,13 @@ export default function CreateBlog() {
     }
 
     useEffect(() => {
-        // 获取当前URL
-        const url = new URL(window.location.href);
 
-        // 获取查询参数
-        const uid = url.searchParams.get('uid');
+
+
+        const hash = window.location.hash;
+        const hashParams = new URLSearchParams(hash.substring(13));
+        // 获取 uid 
+        const uid = hashParams.get('uid');
 
         // 异步加载用户数据
         homeGetUser(uid).then(response => {

@@ -1,7 +1,7 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 23:27:30
- * @LastEditTime: 2024-08-13 03:12:08
+ * @LastEditTime: 2024-08-13 21:36:07
  */
 
 import React from 'react';
@@ -16,13 +16,16 @@ export default function Home() {
     const [user, setUser] = useState(null);
     const [blogs, setBlogs] = useState([]);
     useEffect(() => {
-        // 获取当前URL
-        const url = new URL(window.location.href);
 
-        // 获取查询参数
-        const uid = url.searchParams.get('uid');
+
+        const hash = window.location.hash;
+        const hashParams = new URLSearchParams(hash.substring(7));
+        // 获取 uid 
+        const uid = hashParams.get('uid');
+        console.log("前端Home uid", uid)
 
         // 异步加载用户数据
+        console.log("前端Home准备加载用户数据", uid);
         homeGetUser(uid).then(response => {
             setUser(response);
         }).catch(error => {
@@ -36,12 +39,16 @@ export default function Home() {
         console.log("前端加载后blogs", blogs)
     }, []);
 
+    // return (
+
+    //     <>Home Now!!</>
+    // )
+
     return (
         <div>
+
             {user ? (
                 <div>
-                    {/* <h1>现在的ID为{user.id}</h1>
-                        <h1>现在的名字为{user.username}</h1> */}
                     <Head user={user} />
                     <Circles user={user} />
                     <Content blogs={blogs} user={user} />
@@ -49,9 +56,10 @@ export default function Home() {
             ) : (
                 <div>Loading...</div>
             )}
+
         </div>
     );
-    //TODO:完成主页页面设计
+
 }
 
 function Content({ blogs, user }) {
@@ -132,7 +140,7 @@ function Head({ user }) {
                         </li>
                         <li>
                             <a
-                                href={`/createBlog?uid=${user.id}`}//特别注意使用飘号才能进行变量替换
+                                href={`/#/createBlog?uid=${user.id}`}//特别注意使用飘号才能进行变量替换
                                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                             >
                                 发帖

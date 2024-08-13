@@ -1,14 +1,16 @@
 /*
  * @Author: HHC
  * @Date: 2024-08-07 14:15:47
- * @LastEditTime: 2024-08-12 12:01:42
+ * @LastEditTime: 2024-08-13 20:53:32
  */
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Home from './pages/Home';
 import Circles from './pages/Circles';
 import WelcomeAndLogin from './pages/WelcomeAndLogin.jsx';
@@ -43,6 +45,7 @@ function AppRouter() {
         <Route path="/circles" element={<Circles />} />
       </Routes>
     </Router>
+
   );
 }
 

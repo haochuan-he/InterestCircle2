@@ -16,12 +16,12 @@ export default function Comment() {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        // 获取当前URL
-        const url = new URL(window.location.href);
 
-        // 获取查询参数
-        const uid = url.searchParams.get('uid');
-        const bid = url.searchParams.get('bid');
+        const hash = window.location.hash;
+        const hashParams = new URLSearchParams(hash.substring(10));
+        // 获取 uid 
+        const uid = hashParams.get('uid');
+        const bid = hashParams.get('bid');
         console.log("bid", bid)
 
         // 异步加载用户数据
